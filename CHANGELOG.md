@@ -1,7 +1,18 @@
 # Changelog
 
-All notable changes to the Vault dashboard, newest first. Each deploy to
-`/opt/obsidian-dashboard` gets an entry here.
+All notable changes to Vault Dashboard, newest first. Versioned entries (`## vX.Y.Z`) are
+public releases of this repo; the dated `## YYYY-MM-DD (N)` entries below them are the original
+per-deploy development history this project was built from.
+
+## v1.0.0 — 2026-11-02
+
+First versioned public release.
+
+- **README rewritten and expanded**: a fuller project description, and the former separate
+  `FEATURES.md`/`SETUP.md` pages are now merged directly into the README so everything's
+  readable from the repo's home page without clicking into another file. Both standalone files
+  were removed.
+- No functional/runtime changes in this release — docs and packaging only.
 
 ## 2026-11-02 (12)
 
