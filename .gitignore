@@ -1,0 +1,7 @@
+node_modules/
+dist/
+console.log
+print
+.env
+docker-compose.yml
+docker-compose.backup.yml

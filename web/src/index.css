@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply text-slate-100;
+  background-color: #020617;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(139, 92, 246, 0.12), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(217, 70, 239, 0.08), transparent);
+  background-attachment: fixed;
+}
+
+::selection {
+  @apply bg-violet-500/30;
+}
+
+.scroll-pane::-webkit-scrollbar {
+  width: 10px;
+}
+.scroll-pane::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded-full;
+}
+.scroll-pane::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+/* h4/h5/h6 used to resolve to `text-base`/`text-sm` — the exact same (or smaller) size as a
+   plain paragraph (`.prose-note p` is unstyled, i.e. the browser default 1rem), so a note using
+   those levels showed no visible heading at all beyond a slightly bolder weight. h1-h3 now sit
+   further above body size too; h5/h6 get an uppercase/tracked treatment instead of relying on
+   size alone, since there's nowhere smaller than body text left to shrink to. */
+.prose-note h1, .prose-note h2, .prose-note h3, .prose-note h4, .prose-note h5, .prose-note h6 {
+  @apply font-display font-bold text-slate-100 mt-6 mb-2 leading-tight;
+}
+.prose-note h1 { @apply text-3xl; }
+.prose-note h2 { @apply text-2xl; }
+.prose-note h3 { @apply text-xl; }
+.prose-note h4 { @apply text-lg; }
+.prose-note h5 { @apply text-base uppercase tracking-wide text-slate-300; }
+.prose-note h6 { @apply text-sm uppercase tracking-wide text-slate-400; }
+.prose-note hr { @apply my-6 border-0 border-t border-slate-800; }
+.prose-note p { @apply text-slate-300 leading-relaxed mb-3; }
+.prose-note ul, .prose-note ol { @apply text-slate-300 mb-3 ml-5; }
+.prose-note ul { @apply list-disc; }
+.prose-note ol { @apply list-decimal; }
+.prose-note li { @apply mb-1; }
+.prose-note blockquote { @apply border-l-2 border-violet-500/50 pl-3 text-slate-400 italic my-3; }
+.prose-note code { @apply bg-slate-800 text-violet-300 px-1.5 py-0.5 rounded text-sm; }
+.prose-note pre { @apply bg-slate-900 border border-slate-800 rounded-lg p-3 overflow-x-auto mb-3; }
+.prose-note pre code { @apply bg-transparent p-0; }
+.prose-note img { @apply rounded-lg border border-slate-800 my-3 max-w-full; }
+.prose-note table { @apply w-full text-sm mb-3 border-collapse; }
+.prose-note th, .prose-note td { @apply border border-slate-800 px-2 py-1 text-left; }
+.prose-note a.internal-link { @apply text-violet-400 hover:text-violet-300 underline underline-offset-2 cursor-pointer; }
+.prose-note a.unresolved-link { @apply text-slate-500 border-b border-dashed border-slate-600 cursor-help; }
+.prose-note a.external-link { @apply text-cyan-400 hover:text-cyan-300 underline underline-offset-2; }
+
+/* "Print / save as PDF" on a note: chrome (sidebars, top bar) is hidden via `print:hidden` on
+   its containers in App.tsx; this handles what Tailwind's print variant can't reach — letting
+   content that was clipped by a scrolling flex layout flow naturally, and switching to a plain
+   light page instead of the app's dark theme. */
+@media print {
+  html, body, #root {
+    height: auto !important;
+    background: #fff !important;
+  }
+  main {
+    overflow: visible !important;
+    height: auto !important;
+  }
+  .prose-note, .prose-note :not(code):not(pre) {
+    color: #000 !important;
+  }
+  .prose-note pre, .prose-note code {
+    background: #f3f4f6 !important;
+  }
+}

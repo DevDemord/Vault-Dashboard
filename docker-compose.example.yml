@@ -1,0 +1,17 @@
+# Copy this to docker-compose.yml and edit the two volume paths below for your own setup.
+# See SETUP.md for the full env var reference and a backup/rollback pattern.
+services:
+  vault-dashboard:
+    image: vault-dashboard:latest
+    container_name: vault-dashboard
+    restart: unless-stopped
+    ports:
+      - "3015:3015"
+    env_file:
+      - .env
+    volumes:
+      # Your actual Obsidian vault folder on the host, read-write.
+      - "/path/to/your/obsidian/vault:/app/vault"
+      # Persistent app data (settings, note version history) -- must be a real host path,
+      # not an anonymous volume, or a container recreate wipes it.
+      - "/path/to/persistent/data:/app/data"
